@@ -1,13 +1,8 @@
-var canvas = document.getElementById("clock");
-var can = document.getElementById("UTC");
-
-var canctx = can.getContext("2d");
+var canvas = document.getElementById("UTC");
 var ctx = canvas.getContext("2d");
 
 var radius = canvas.height / 2;
 ctx.translate(radius, radius);
-canctx.translate(radius, radius);
-
 radius = radius * 0.90
 
 setInterval(drawClock, 1000);
@@ -16,16 +11,10 @@ function drawClock() {
     ctx.arc(0, 0, radius, 0 , 2 * Math.PI);
     ctx.fillStyle = "white";
     ctx.fill();
-    canctx.arc(0, 0, radius, 0 , 2 * Math.PI);
-    canctx.fillStyle = "white";
-    canctx.fill();
-    
-    drawFace(canctx, radius);
-    drawNumbers(canctx, radius);
-    drawTime(canctx, radius, 1);
+
     drawFace(ctx, radius);
     drawNumbers(ctx, radius);
-    drawTime(ctx, radius, 0);
+    drawTime(ctx, radius);
   }
 
   function drawFace(ctx, radius){
@@ -96,19 +85,18 @@ function drawClock() {
         ctx.rotate(-ang);
     }
 }
- function drawTime(ctx, radius, ind){
+ function drawTime(ctx, radius){
     var now = new Date();
     var hour = now.getHours();
     var minute = now.getMinutes();
     var second = now.getSeconds();
 
-    hour = hour%12;
-    if(ind) hour = (hour + 6) % 12;
+    hour = (hour + 6)%12;
     hour = (hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60));
     ctx.strokeStyle='green';
     
     drawHand(ctx, hour, radius*0.5, radius*0.06);
-    if(ind) minute = (minute + 30) % 60 ;
+    minute = (minute + 30) % 60;
     minute = (minute*Math.PI/30)+(second*Math.PI/(30*60));
     ctx.strokeStyle='green';
     
