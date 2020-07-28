@@ -10,6 +10,9 @@ ap.get('/resume', function(req,res){
 ap.get('/mail', function(req,res){
     res.send("Mail Service Will be Added soon!!");
 });
+ap.get('/clock', function(req,res){
+    res.sendFile(__dirname + '/Frontend/HTML/clock.html');
+});
 
 var po = process.env.PORT || 3000;
 ap.listen(po,function(){
