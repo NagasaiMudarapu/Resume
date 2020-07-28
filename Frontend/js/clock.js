@@ -93,9 +93,13 @@ function drawClock() {
 
     hour = hour%12;
     hour = (hour*Math.PI/6)+(minute*Math.PI/(6*60))+(second*Math.PI/(360*60));
+    ctx.strokeStyle='green';
+    
     drawHand(ctx, hour, radius*0.5, radius*0.06);
 
     minute = (minute*Math.PI/30)+(second*Math.PI/(30*60));
+    ctx.strokeStyle='green';
+    
     drawHand(ctx, minute, radius*0.8, radius*0.06);
 
     second = (second*Math.PI/30);
